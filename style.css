@@ -93,3 +93,40 @@ section {
     height: 150px;
 }
 
+#categorybox table, #questionbox table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+/* Style table headers (categories) */
+#categorybox th {
+    background-color: darkblue;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
+    border: 2px solid white;
+    text-align: center;
+}
+
+/* Style table cells (money values) */
+#questionbox th {
+    background-color: navy;
+    color: gold;
+    font-size: 1.5rem;
+    padding: 20px;
+    border: 2px solid white;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#questionbox th:hover {
+    background-color: darkgoldenrod;
+    color: white;
+}
+
+#categorybox table th,
+#questionbox table th {
+    width: 25%;
+}
