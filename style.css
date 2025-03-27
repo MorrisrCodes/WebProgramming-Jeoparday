@@ -13,13 +13,14 @@
 }
 
 header {
-    background-color: yellow;
+    /* background-color: yellow; */
     z-index: 4;
     position: relative;
+    margin-bottom: 30px;
 }
 
 body {
-    background-color: blue;
+    background-color: rgb(73, 73, 255);
     z-index: 0;
     position: relative;
     height: 100vh;
@@ -30,7 +31,7 @@ body {
 }
 
 main {
-    background-color: red;
+    /* background-color: red;*/
     z-index: 1;
     position: relative;
     width: 70%;
@@ -73,14 +74,16 @@ section {
 }
 
 #leftscorebox, #rightscorebox {
-    background-color: rgb(139, 0, 152);
+    /* background-color: rgb(139, 0, 152); */
+    background-color: darkblue;
     position: relative;
     width: 80%;
     height: 10%;
+    border-radius: 5px;
 }
 
 #leftnamebox, #rightnamebox {
-    background-color: rgb(139, 0, 152);
+    /* background-color: rgb(139, 0, 152); */
     position: relative;
     width: 80%;
     height: 10%;
@@ -130,3 +133,4 @@ section {
 #questionbox table th {
     width: 25%;
 }
+
