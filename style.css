@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 * {
     margin: 0;
     padding: 0;
 }
 
-=======
->>>>>>> d5095d894bc2adb246286727cc9c568483704404
 #page {
     display: flex;
     justify-content: center;
@@ -18,7 +15,6 @@
 }
 
 header {
-<<<<<<< HEAD
     /* background-color: yellow; */
     z-index: 4;
     position: relative;
@@ -29,8 +25,6 @@ body {
     background-color: rgb(73, 73, 255);
     z-index: 0;
     position: relative;
-=======
->>>>>>> d5095d894bc2adb246286727cc9c568483704404
     background-color: yellow;
     z-index: 4;
     position: relative;
@@ -50,12 +44,9 @@ body {
 }
 
 main {
-<<<<<<< HEAD
     /* background-color: red;*/
     z-index: 1;
     position: relative;
-=======
->>>>>>> d5095d894bc2adb246286727cc9c568483704404
     background-color: red;
     z-index: 1;
     position: relative;
@@ -72,7 +63,6 @@ section {
     background-color: green;
     z-index: 2;
     position: relative;
-<<<<<<< HEAD
     width: 60%;
     height: 100%;
     display: flex;
@@ -160,15 +150,9 @@ section {
 #categorybox table th,
 #questionbox table th {
     width: 25%;
-=======
->>>>>>> d5095d894bc2adb246286727cc9c568483704404
     margin: 0;
     padding: 0;
     width: 60%;
     height: 100%;
-<<<<<<< HEAD
 }
 
-=======
-}
->>>>>>> d5095d894bc2adb246286727cc9c568483704404
