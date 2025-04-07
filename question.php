@@ -97,8 +97,22 @@ $questions = [
 $category = $_POST['category'] ?? null;
 $difficulty = $_POST['difficulty'] ?? null;
 
-// Select a random question from the pool
+// Initialize the session variable to track used questions
+if (!isset($_SESSION['used_questions'])) {
+    $_SESSION['used_questions'] = [];
+}
+
+// Check if the question has already been used
 if ($category && $difficulty && isset($questions[$category][$difficulty])) {
+    $questionKey = $category . '-' . $difficulty;
+
+    if (in_array($questionKey, $_SESSION['used_questions'])) {
+        // Redirect back to the game if the question has already been used
+        header("Location: game.php?error=question_already_used");
+        exit();
+    }
+
+    // Select a random question from the pool
     $questionPool = $questions[$category][$difficulty];
     $selectedQuestion = $questionPool[array_rand($questionPool)];
     $question = $selectedQuestion['question'];
@@ -111,6 +125,9 @@ if ($category && $difficulty && isset($questions[$category][$difficulty])) {
         'question' => $question,
         'answer' => $correctAnswer
     ];
+
+    // Mark the question as used
+    $_SESSION['used_questions'][] = $questionKey;
 } else {
     $question = "Invalid category or difficulty.";
     $correctAnswer = null;

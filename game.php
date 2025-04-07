@@ -11,6 +11,9 @@ if (!isset($_SESSION['player2_score'])) {
 if (!isset($_SESSION['current_turn'])) {
     $_SESSION['current_turn'] = 'Player 1';
 }
+if (!isset($_SESSION['used_questions'])) {
+    $_SESSION['used_questions'] = [];
+}
 
 // Toggle the turn if the answer was incorrect
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
@@ -38,6 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                     color: white;
                     border-radius: 5px;
                     font-size: 1.2rem;
+                }
+                .disabled {
+                    background-color: gray !important;
+                    color: white !important;
+                    cursor: not-allowed !important;
                 }
             </style>
         </head>
@@ -74,155 +82,255 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                             <!-- 100 Point Questions -->
                             <tr>
                                 <th>
+                                    <?php $questionKey = 'HTML-100'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="HTML">
                                         <input type="hidden" name="difficulty" value="100">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">100</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            100
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'CSS-100'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="CSS">
                                         <input type="hidden" name="difficulty" value="100">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">100</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            100
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'PHP-100'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="PHP">
                                         <input type="hidden" name="difficulty" value="100">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">100</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            100
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'JS-100'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="JS">
                                         <input type="hidden" name="difficulty" value="100">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">100</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            100
+                                        </button>
                                     </form>
                                 </th>
                             </tr>
                             <!-- 200 Point Questions -->
                             <tr>
                                 <th>
+                                <?php $questionKey = 'HTML-200'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="HTML">
                                         <input type="hidden" name="difficulty" value="200">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">200</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            200
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'CSS-200'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="CSS">
                                         <input type="hidden" name="difficulty" value="200">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">200</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            200
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'PHP-200'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="PHP">
                                         <input type="hidden" name="difficulty" value="200">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">200</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            200
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'JS-200'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="JS">
                                         <input type="hidden" name="difficulty" value="200">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">200</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            200
+                                        </button>
                                     </form>
                                 </th>
                             </tr>
                             <!-- 300 Point Questions -->
                             <tr>
                                 <th>
+                                    <?php $questionKey = 'HTML-300'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="HTML">
                                         <input type="hidden" name="difficulty" value="300">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">300</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            300
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'CSS-300'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="CSS">
                                         <input type="hidden" name="difficulty" value="300">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">300</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            300
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'PHP-300'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="PHP">
                                         <input type="hidden" name="difficulty" value="300">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">300</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            300
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'JS-300'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="JS">
                                         <input type="hidden" name="difficulty" value="300">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">300</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            300
+                                        </button>
                                     </form>
                                 </th>
                             </tr>
                             <!-- 400 Point Questions -->
                             <tr>
                                 <th>
+                                    <?php $questionKey = 'HTML-400'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="HTML">
                                         <input type="hidden" name="difficulty" value="400">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">400</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            400
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'CSS-400'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="CSS">
                                         <input type="hidden" name="difficulty" value="400">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">400</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            400
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'PHP-400'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="PHP">
                                         <input type="hidden" name="difficulty" value="400">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">400</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            400
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'JS-400'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="JS">
                                         <input type="hidden" name="difficulty" value="400">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">400</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            400
+                                        </button>
                                     </form>
                                 </th>
                             </tr>
                             <!-- 500 Point Questions -->
                             <tr>
                                 <th>
+                                    <?php $questionKey = 'HTML-500'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="HTML">
                                         <input type="hidden" name="difficulty" value="500">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">500</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            500
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'CSS-500'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="CSS">
                                         <input type="hidden" name="difficulty" value="500">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">500</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            500
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'PHP-500'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="PHP">
                                         <input type="hidden" name="difficulty" value="500">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">500</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            500
+                                        </button>
                                     </form>
                                 </th>
                                 <th>
+                                    <?php $questionKey = 'JS-500'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="JS">
                                         <input type="hidden" name="difficulty" value="500">
-                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;">500</button>
+                                        <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
+                                            class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
+                                            500
+                                        </button>
                                     </form>
                                 </th>
                             </tr>
