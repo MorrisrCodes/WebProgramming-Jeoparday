@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Reset the turn to Player 1 when the game starts
+if (!isset($_SESSION['game_initialized'])) {
+    $_SESSION['current_turn'] = 'Player 1';
+    $_SESSION['game_initialized'] = true;
+}
+
+// Toggle the turn when a question is clicked
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION['current_turn'] = $_SESSION['current_turn'] === 'Player 1' ? 'Player 2' : 'Player 1';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <div id="page">
@@ -7,11 +21,26 @@
             <title>Web Programming Jeopardy</title>
             <link rel="stylesheet" href="style.css" />
             <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+            <style>
+                #turn-indicator {
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                    padding: 10px 15px;
+                    background-color: darkblue;
+                    color: white;
+                    border-radius: 5px;
+                    font-size: 1.2rem;
+                }
+            </style>
         </head>
         <header>
             <h1>Web Programming Jeopardy</h1>
         </header>
         <body>
+            <div id="turn-indicator">
+                Current Turn: <?php echo htmlspecialchars($_SESSION['current_turn']); ?>
+            </div>
             <main>
                 <div id="leftpbox">
                     <div id="leftscorebox">

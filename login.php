@@ -3,7 +3,7 @@ session_start();
 
 // If the user is already logged in, redirect to the start page
 if (isset($_SESSION['username'])) {
-    header("Location: game.html");
+    header("Location: game.php");
     exit();
 }
 
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if the entered credentials match the session data
         if ($username === $_SESSION['username'] && $password === $_SESSION['password']) {
             // User is logged in, redirect to the game page
-            header("Location: game.html");
+            header("Location: game.php");
             exit();
         } else {
             echo "Invalid username or password.";

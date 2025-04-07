@@ -88,7 +88,7 @@ if ($category && $difficulty && isset($questions[$category][$difficulty])) {
     <div class="popup">
         <h2>Category: <?php echo htmlspecialchars($category); ?></h2>
         <p><?php echo htmlspecialchars($randomQuestion); ?></p>
-        <a href="game.html">Back to Game</a>
+        <a href="game.php">Back to Game</a>
     </div>
 </body>
 </html>
