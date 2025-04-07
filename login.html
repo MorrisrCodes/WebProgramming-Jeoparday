@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Web Programming Jeopardy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            background-color: sandybrown;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-container h2 {
+            color: darkblue;
+            margin-bottom: 20px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: darkblue;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: navy;
+        }
+
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(73, 73, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <form class="login-container" action="login.php" method="post">
+            <h2>Login</h2>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+            <p style="margin-top: 10px;">
+                Don’t have an account? <a href="signup.html" style="color: darkblue;">Sign up here</a>
+            </p>            
+        </form>
+    </div>
+</body>
+</html>
