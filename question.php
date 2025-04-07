@@ -17,12 +17,12 @@ $questions = [
             ["question" => "This is used to start a list in HTML", "answer" => "<li>"]
         ],
         "400" => [
-            ["question" => "This tag  is used for hyper links", "answer" => "<a>"],
+            ["question" => "This tag is used for hyperlinks", "answer" => "<a>"],
             ["question" => "This tag can be used to make a button that can go to another page without js", "answer" => "<a>"]
         ],
         "500" => [
-            ["question" => "This loads a HTML boiler plate in most IDE's", "answer" => "!"],
-            ["question" => "This is the small heading tag", "answer" => "<h6>"]
+            ["question" => "This loads an HTML boilerplate in most IDEs", "answer" => "!"],
+            ["question" => "This is the smallest heading tag", "answer" => "<h6>"]
         ],
     ],
     "CSS" => [
@@ -31,8 +31,8 @@ $questions = [
             ["question" => "This property changes background color", "answer" => "background-color:"]
         ],
         "200" => [
-            ["question" => "This is how you reference a class in css", "answer" => ".class"],
-            ["question" => "This is how you reference an id in css", "answer" => "#id"]
+            ["question" => "This is how you reference a class in CSS", "answer" => ".class"],
+            ["question" => "This is how you reference an ID in CSS", "answer" => "#id"]
         ],
         "300" => [
             ["question" => "This property changes the layering level of elements", "answer" => "z-index"],
@@ -44,16 +44,16 @@ $questions = [
         ],
         "500" => [
             ["question" => "This scales relative to font size", "answer" => "em"],
-            ["question" => "This is how many characters are in hex color definition", "answer" => "6"]
+            ["question" => "This is how many characters are in a hex color definition", "answer" => "6"]
         ],
     ],
     "PHP" => [
         "100" => [
-            ["question" => "This is the php opening tag", "answer" => "<?php"],
+            ["question" => "This is the PHP opening tag", "answer" => "<?php"],
             ["question" => "The symbol used to start a variable", "answer" => "$"]
         ],
         "200" => [
-            ["question" => "This is how you output text in php", "answer" => "echo"],
+            ["question" => "This is how you output text in PHP", "answer" => "echo"],
             ["question" => "The operator used to concatenate strings", "answer" => "."]
         ],
         "300" => [
@@ -75,12 +75,12 @@ $questions = [
             ["question" => "The keyword used to create a function", "answer" => "function"]
         ],
         "200" => [
-            ["question" => "This is how you define a non changing variable", "answer" => "const?"],
+            ["question" => "This is how you define a non-changing variable", "answer" => "const"],
             ["question" => "This is how you define a potentially changing variable", "answer" => "let"]
         ],
         "300" => [
             ["question" => "This is an outdated assignment for a variable", "answer" => "var"],
-            ["question" => "This is how you get an element by it's id", "answer" => "document.getElementById('id')"]
+            ["question" => "This is how you get an element by its ID", "answer" => "document.getElementById('id')"]
         ],
         "400" => [
             ["question" => "The value returned when a variable has no value", "answer" => "undefined"],
@@ -136,6 +136,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer'])) {
         header("Location: game.php?answer_correct=true");
         exit();
     } else {
+        // Deduct points if the answer is incorrect
+        if ($currentPlayer === 'Player 1') {
+            $_SESSION['player1_score'] -= (int)$storedQuestion['difficulty'];
+        } else {
+            $_SESSION['player2_score'] -= (int)$storedQuestion['difficulty'];
+        }
+
+        // Toggle the turn to the other player
+        $_SESSION['current_turn'] = $currentPlayer === 'Player 1' ? 'Player 2' : 'Player 1';
+
         // Redirect back to the game with a failure message
         header("Location: game.php?answer_correct=false");
         exit();
