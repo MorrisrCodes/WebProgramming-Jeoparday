@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['password'] = $password;
 
         // Redirect to the start page after signup
-        header("Location: Start.html");
+        header("Location: game.html");
         exit();
     }
 }
