@@ -15,6 +15,14 @@ if (!isset($_SESSION['used_questions'])) {
     $_SESSION['used_questions'] = [];
 }
 
+// Check if the game is over
+$totalQuestions = 20; // Total number of questions in the game (5 categories x 4 difficulties)
+$usedQuestions = count($_SESSION['used_questions']);
+if ($usedQuestions >= $totalQuestions) {
+    header("Location: game-over.php");
+    exit();
+}
+
 // Toggle the turn if the answer was incorrect
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
     if ($_POST['answer_correct'] === 'false') {
