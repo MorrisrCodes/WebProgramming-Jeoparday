@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Define the question pool
 $questions = [
     "HTML" => [
@@ -42,6 +44,9 @@ if ($category && $difficulty && isset($questions[$category][$difficulty])) {
 } else {
     $randomQuestion = "Invalid category or difficulty.";
 }
+
+// Determine the current player
+$currentPlayer = $_SESSION['current_turn'] ?? 'Player 1';
 ?>
 
 <!DOCTYPE html>
@@ -69,6 +74,31 @@ if ($category && $difficulty && isset($questions[$category][$difficulty])) {
             font-size: 1.2rem;
         }
 
+        .popup form {
+            margin-top: 20px;
+        }
+
+        .popup input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid darkblue;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .popup input[type="submit"] {
+            padding: 10px 15px;
+            background-color: darkblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup input[type="submit"]:hover {
+            background-color: navy;
+        }
+
         .popup a {
             display: inline-block;
             margin-top: 20px;
@@ -87,7 +117,12 @@ if ($category && $difficulty && isset($questions[$category][$difficulty])) {
 <body>
     <div class="popup">
         <h2>Category: <?php echo htmlspecialchars($category); ?></h2>
-        <p><?php echo htmlspecialchars($randomQuestion); ?></p>
+        <p><?php echo htmlspecialchars($randomQuestion); ?></p><br/>
+        <p><?php echo htmlspecialchars($currentPlayer); ?>'s Answer:</p>
+        <form action="game.php" method="post">
+            <input type="text" name="answer" placeholder="What is" required>
+            <input type="submit" value="Submit Answer">
+        </form>
         <a href="game.php">Back to Game</a>
     </div>
 </body>
