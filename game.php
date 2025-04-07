@@ -29,6 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
         $_SESSION['current_turn'] = $_SESSION['current_turn'] === 'Player 1' ? 'Player 2' : 'Player 1';
     }
 }
+
+// Function to get the answer for a used question
+// Function to get the answer for a used question
+function getAnswer($category, $difficulty) {
+    $questionKey = $category . '-' . $difficulty;
+    return $_SESSION['used_answers'][$questionKey] ?? '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                     font-size: 1.2rem;
                 }
                 .disabled {
-                    background-color: gray !important;
                     color: white !important;
                     cursor: not-allowed !important;
                 }
@@ -97,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            100
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('HTML', '100')) : '100'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -109,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            100
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('CSS', '100')) : '100'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -121,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            100
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('PHP', '100')) : '100'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -133,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            100
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('JS', '100')) : '100'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -141,14 +147,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                             <!-- 200 Point Questions -->
                             <tr>
                                 <th>
-                                <?php $questionKey = 'HTML-200'; ?>
+                                    <?php $questionKey = 'HTML-200'; ?>
                                     <form action="question.php" method="post">
                                         <input type="hidden" name="category" value="HTML">
                                         <input type="hidden" name="difficulty" value="200">
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            200
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('HTML', '200')) : '200'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -160,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            200
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('CSS', '200')) : '200'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -172,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            200
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('PHP', '200')) : '200'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -184,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            200
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('JS', '200')) : '200'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -199,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            300
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('HTML', '300')) : '300'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -211,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            300
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('CSS', '300')) : '300'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -223,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            300
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('PHP', '300')) : '300'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -235,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            300
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('JS', '300')) : '300'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -250,7 +256,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            400
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('HTML', '400')) : '400'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -262,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            400
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('CSS', '400')) : '400'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -274,7 +280,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            400
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('PHP', '400')) : '400'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -286,7 +292,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            400
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('JS', '400')) : '400'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -301,7 +307,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            500
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('HTML', '500')) : '500'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -313,7 +319,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            500
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('CSS', '500')) : '500'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -325,7 +331,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            500
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('PHP', '500')) : '500'; ?>
                                         </button>
                                     </form>
                                 </th>
@@ -337,7 +343,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
                                         <button type="submit" style="all: unset; cursor: pointer; color: gold;" 
                                             class="<?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>"
                                             <?php echo in_array($questionKey, $_SESSION['used_questions']) ? 'disabled' : ''; ?>>
-                                            500
+                                            <?php echo in_array($questionKey, $_SESSION['used_questions']) ? htmlspecialchars(getAnswer('JS', '500')) : '500'; ?>
                                         </button>
                                     </form>
                                 </th>

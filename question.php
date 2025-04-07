@@ -62,7 +62,7 @@ $questions = [
         ],
         "400" => [
             ["question" => "This is how to write a loop through an array", "answer" => "foreach"],
-            ["question" => "How you start a session in PHP", "answer" => "session_start()"]
+            ["question" => "This function is used to count the number of elements in an array", "answer" => "count()"]
         ],
         "500" => [
             ["question" => "The function that returns the type of a variable", "answer" => "gettype()"],
@@ -80,7 +80,7 @@ $questions = [
         ],
         "300" => [
             ["question" => "This is an outdated assignment for a variable", "answer" => "var"],
-            ["question" => "This is how you get an element by its ID", "answer" => "document.getElementById('id')"]
+            ["question" => "This method is used to add one or more elements to the end of an array", "answer" => "push()"]
         ],
         "400" => [
             ["question" => "The value returned when a variable has no value", "answer" => "undefined"],
@@ -97,9 +97,12 @@ $questions = [
 $category = $_POST['category'] ?? null;
 $difficulty = $_POST['difficulty'] ?? null;
 
-// Initialize the session variable to track used questions
+// Initialize the session variables to track used questions and answers
 if (!isset($_SESSION['used_questions'])) {
     $_SESSION['used_questions'] = [];
+}
+if (!isset($_SESSION['used_answers'])) {
+    $_SESSION['used_answers'] = [];
 }
 
 // Check if the question has already been used
@@ -118,16 +121,15 @@ if ($category && $difficulty && isset($questions[$category][$difficulty])) {
     $question = $selectedQuestion['question'];
     $correctAnswer = strtolower($selectedQuestion['answer']);
 
-    // Store the correct answer in the session for validation
+    // Store the correct answer in the session for validation and display
     $_SESSION['current_question'] = [
         'category' => $category,
         'difficulty' => $difficulty,
         'question' => $question,
         'answer' => $correctAnswer
     ];
-
-    // Mark the question as used
     $_SESSION['used_questions'][] = $questionKey;
+    $_SESSION['used_answers'][$questionKey] = $selectedQuestion['answer']; // Store the answer
 } else {
     $question = "Invalid category or difficulty.";
     $correctAnswer = null;
