@@ -15,13 +15,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($username) || empty($password)) {
         echo "Please fill in both username and password.";
     } else {
-        // Check if the entered credentials match the session data
-        if ($username === $_SESSION['username'] && $password === $_SESSION['password']) {
-            // User is logged in, redirect to the game page
-            header("Location: game.php");
-            exit();
+        // Check if the session variables for username and password are set
+        if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+            // Check if the entered credentials match the session data
+            if ($username === $_SESSION['username'] && $password === $_SESSION['password']) {
+                // User is logged in, redirect to the game page
+                header("Location: game.php");
+                exit();
+            } else {
+                echo "Invalid username or password.";
+            }
         } else {
-            echo "Invalid username or password.";
+            // If session variables are not set, prompt the user to sign up
+            echo "No account found. Please <a href='signup.html'>sign up</a> first.";
         }
     }
 }
