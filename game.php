@@ -1,15 +1,22 @@
 <?php
 session_start();
 
-// Reset the turn to Player 1 when the game starts
-if (!isset($_SESSION['game_initialized'])) {
+// Ensure the session variables are initialized
+if (!isset($_SESSION['player1_score'])) {
+    $_SESSION['player1_score'] = 0;
+}
+if (!isset($_SESSION['player2_score'])) {
+    $_SESSION['player2_score'] = 0;
+}
+if (!isset($_SESSION['current_turn'])) {
     $_SESSION['current_turn'] = 'Player 1';
-    $_SESSION['game_initialized'] = true;
 }
 
-// Toggle the turn when a question is clicked
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['current_turn'] = $_SESSION['current_turn'] === 'Player 1' ? 'Player 2' : 'Player 1';
+// Toggle the turn if the answer was incorrect
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer_correct'])) {
+    if ($_POST['answer_correct'] === 'false') {
+        $_SESSION['current_turn'] = $_SESSION['current_turn'] === 'Player 1' ? 'Player 2' : 'Player 1';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -44,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <main>
                 <div id="leftpbox">
                     <div id="leftscorebox">
-
+                        <h3>Score: <?php echo $_SESSION['player1_score']; ?></h3>
                     </div>
                     <img id='redp' src="red.png"/>
                     <div id="leftnamebox">
@@ -224,7 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </section>
                 <div id="rightpbox">
                     <div id="rightscorebox">
-
+                        <h3>Score: <?php echo $_SESSION['player2_score']; ?></h3>
                     </div>
                     <img id="bluep" src="blue.png"/>
                     <div id="rightnamebox">
@@ -242,5 +249,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Logout
         </button>
     </form>
-    
 </html>
