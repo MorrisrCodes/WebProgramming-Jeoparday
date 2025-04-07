@@ -148,7 +148,7 @@ session_destroy();
         <?php endif; ?>
         <a href="game.php">Start a New Game</a>
         <form action="logout.php" method="post">
-            <button type="submit">Log Out</button>
+            <button type="submit">Logout</button>
         </form>
     </div>
 </body>

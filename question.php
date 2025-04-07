@@ -244,7 +244,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer'])) {
             <input type="text" name="answer" placeholder="What is" required>
             <input type="submit" value="Submit Answer">
         </form>
-        <a href="game.php">Back to Game</a>
     </div>
 </body>
 </html>
